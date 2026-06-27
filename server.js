@@ -14,8 +14,14 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/portfo
 
 // Middlewares
 app.use(cors({
-  origin: process.env.CLIENT_URL
+  origin: [
+    process.env.CLIENT_URL,
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 app.use(express.json());
 
 // Routes
